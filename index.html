@@ -12,13 +12,14 @@
   </head>
   
   <body>
-    <form action = "restaurants.html" method="GET">
+    <form action = "restaurants.php">
     <!-- Heading -->
-    <div class = "row">
-      <div class = "col-md-12">
-        <p class="text-center">Restaurant Finder</p>
+
+      <div class = "row">
+        <div class = "col-lg-12">
+          <p class="text-center">Restaurant Finder</p>
+        </div>
       </div>
-    </div>
     <!-- Location, Distance, and Time Headers -->
     <div class = "row">
       <div class = "col-md-4">
@@ -36,7 +37,7 @@
        <!-- Location Input -->
       <div class = "col-md-4">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1" name=loc>
         </div>
       </div>
       <!-- Distance Input -->
@@ -50,13 +51,13 @@
         <div class="text-center">
           <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
             <option selected>Choose...</option>
-            <option value="1">Monday</option>
-            <option value="2">Tuesday</option>
-            <option value="2">Wednesday</option>
-            <option value="3">Thursday</option>
-            <option value="3">Friday</option>
-            <option value="3">Saturday</option>
-            <option value="3">Sunday</option>
+            <option value="Mon">Monday</option>
+            <option value="Tue">Tuesday</option>
+            <option value="Wed">Wednesday</option>
+            <option value="Thur">Thursday</option>
+            <option value="Fri">Friday</option>
+            <option value="Sat">Saturday</option>
+            <option value="Sun">Sunday</option>
           </select>
         </div>
       </div>
@@ -79,73 +80,92 @@
     </div>
 
     <div class = "row">
-      <div class = "col-md-12">
+      <div class = "col-md-8">
         <p class="text-center">Attributes</p>
+      </div>
+      <div class = "col-md-4">
+        <p class="text-center">Attire</p>
       </div>
     </div>
     <div class = "row">
-      <div class = "col-md-3">
+      <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="food" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
-              Casual
+              Food
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="wifi" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
-              Formal
+              Wi-Fi
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="takeout" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Allows Takeout
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="credit" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Accepts Credit Card
             </label>
           </div>
         </div>
+        <div class="col-2 d-flex justify-content-center">
+          <div class="text-center">
+            <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="formal">
+              <label class="form-check-label" for="inlineRadio1">Formal</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 d-flex justify-content-center">
+        <div class="text-center">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="casual">
+          <label class="form-check-label" for="inlineRadio2">Casual</label>
+        </div>
+      </div>
+    </div>
     </div>
 
     <div class = "row">
-      <div class = "col-md-3">
+      <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="reservation" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Allows Reservations
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="businessparking" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Business Parking
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="tv" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Has TV
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="ethnic" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Ethnic Food
             </label>
@@ -154,33 +174,33 @@
     </div>
 
     <div class = "row">
-      <div class = "col-md-3">
+      <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="bike" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Bike Parking
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="wheelchair" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Wheelchair Accessible
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="garage" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Garage Parking
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="street" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Street Parking
             </label>
@@ -189,33 +209,33 @@
     </div>
 
     <div class = "row">
-      <div class = "col-md-3">
+      <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="alcohol" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Alcohol
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="kids" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Good For Kids
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="groups" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Good for Groups
             </label>
           </div>
         </div>
-        <div class = "col-md-3">
+        <div class = "col-md-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <input class="form-check-input" type="checkbox" value="outdoor" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Outdoor Seating
             </label>
