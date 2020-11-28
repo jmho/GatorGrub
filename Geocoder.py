@@ -1,12 +1,12 @@
 import requests
 import json
+import cgi
 base_url = 'http://api.zippopotam.us/us/'
 
-#These are the variables to be read in from the websites boxes
-city = input("Enter a City:  ")
-state = input("Enter a State: ")
+form = cgi.FieldStorage()
 
-
+city =  form.getvalue('city')
+state = form.getvalue('state')
 
 r = requests.get(base_url+state.lower()+"/"+city.lower())
 j = r.json()
