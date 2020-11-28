@@ -1,8 +1,8 @@
 import requests
 import json
-
 base_url = 'http://api.zippopotam.us/us/'
 
+#These are the variables to be read in from the websites boxes
 city = input("Enter a City:  ")
 state = input("Enter a State: ")
 
@@ -15,5 +15,3 @@ try:
     print(coords)
 except KeyError:
     print("Enter a real location!")
-
-
