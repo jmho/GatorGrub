@@ -1,9 +1,11 @@
-<!doctype html>
+\<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -12,257 +14,293 @@
   </head>
   
   <body>
-    <form action = "restaurants.php">
+    <form>
     <!-- Heading -->
 
       <div class = "row">
-        <div class = "col-lg-12">
-          <p class="text-center">Restaurant Finder</p>
+        <div class = "col-lg-12" style="border: 2px solid black">
+          <div style='background-color:cyan; padding: 20px'>
+          <h1 class="text-center" class ="display-5">Restaurant Finder</h1>
         </div>
+
+      </div>
       </div>
     <!-- Location, Distance, and Time Headers -->
+    <div style="border: 2px solid black">
     <div class = "row">
-      <div class = "col-md-4">
-        <p class="text-center">Location</p>
+      <div class = "col-md-6">
+        <div style='padding: 12px'>
+        <h4 class="text-center" class ="display-3">City</h4>
       </div>
-      <div class = "col-md-4">
-        <p class="text-center">Distance (km)</p>
       </div>
-      <div class = "col-md-4">
-        <p class="text-center">Date and Time</p>
+      <div class = "col-md-6">
+        <div style='padding: 12px'>
+        <h4 class="text-center" class ="display-3">State</h4>
+      </div>
       </div>
     </div>
 
     <div class ="row">
        <!-- Location Input -->
-      <div class = "col-md-4">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Location" aria-label="Username" aria-describedby="basic-addon1" name=loc>
-        </div>
+      <div class = "col-md-6">
+          <input type="text" class="form-control" id = "city" placeholder="City"/>
       </div>
       <!-- Distance Input -->
-      <div class = "col-md-4">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Distance" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
+      <div class = "col-md-6">
+        <input type="text" class="form-control" id = "state" placeholder="State"/>
       </div>
       <!-- Date Dropdown -->
-      <div class="col-2 d-flex justify-content-center">
-        <div class="text-center">
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="Mon">Monday</option>
-            <option value="Tue">Tuesday</option>
-            <option value="Wed">Wednesday</option>
-            <option value="Thur">Thursday</option>
-            <option value="Fri">Friday</option>
-            <option value="Sat">Saturday</option>
-            <option value="Sun">Sunday</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-2 d-flex justify-content-center">
-        <div class="text-center">
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>Choose...</option>
-            <option value="1">0:00</option>
-            <option value="2">1:00</option>
-            <option value="2">2:00</option>
-            <option value="3">3:00</option>
-            <option value="3">4:00</option>
-            <option value="3">5:00</option>
-            <option value="3">6:00</option>
-          </select>
-        </div>
-      </div>
-
-
     </div>
-
-    <div class = "row">
-      <div class = "col-md-8">
-        <p class="text-center">Attributes</p>
+      <div class = "row">
+        <div class = "col-md-4">
+          <div style='padding: 12px'>
+          <h4 class="text-center" class ="display-3">Region of Food</h4>
+        </div>
+        </div>
+        <div class = "col-md-4">
+          <div style='padding: 12px'>
+          <h4 class="text-center" class ="display-3">Type of Food</h4>
+        </div>
+        </div>
+        <div class = "col-md-4">
+          <div style='padding: 12px'>
+          <h4 class="text-center" class ="display-3">Type of Restaurant</h4>
+        </div>
+        </div>
       </div>
-      <div class = "col-md-4">
-        <p class="text-center">Attire</p>
-      </div>
-    </div>
-    <div class = "row">
-      <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="food" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Food
-            </label>
+  
+      <div class ="row">
+         <!-- Location Input -->
+         <div class="col-md-4">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id = "region" placeholder="Region of Food"/>
           </div>
         </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="wifi" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Wi-Fi
-            </label>
+        <!-- Distance Input -->
+        <div class = "col-md-4">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id = "food" placeholder="Type of Food"/>
           </div>
         </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="takeout" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Allows Takeout
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="credit" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Accepts Credit Card
-            </label>
-          </div>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-          <div class="text-center">
-            <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="formal">
-              <label class="form-check-label" for="inlineRadio1">Formal</label>
+        <!-- Date Dropdown -->
+        <div class="col-md-4">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id = "restaurant" placeholder="Type of Restaurant"/>
           </div>
         </div>
       </div>
-      <div class="col-2 d-flex justify-content-center">
-        <div class="text-center">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="casual">
-          <label class="form-check-label" for="inlineRadio2">Casual</label>
+      
+      <div class ="row">
+        <div class="col-md-4">
+          <div style='padding: 12px'>
+            <h4 class="text-center" class ="display-3">Are you getting takeout?</h4>
+          </div>
+      </div>
+    </div>
+
+    <div class ="row">
+      <div class="col-md-2">
+        <div class="form-check">
+          <div style='padding: 15px'>
+            <input class="form-check-input" type="radio" name="takeout" id="exampleRadios1" value="True" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Yes
+            </label>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-2">
+          <div class="form-check">
+            <div style='padding: 15px'>
+            <input class="form-check-input" type="radio" name="takeout" id="exampleRadios2" value="False">
+            <label class="form-check-label" for="exampleRadios2">
+              No
+            </label>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class ="row">
+      <div class="col-md-4">
+        <div style='padding: 12px'>
+          <h4 class="text-center" class ="display-3">Do you want delivery?</h4>
         </div>
       </div>
     </div>
+
+    <div class ="row">
+      <div class="col-md-2">
+        <div class="form-check">
+          <div style='padding: 15px'>
+            <input class="form-check-input" type="radio" name="delivery" id="exampleRadios1" value="True" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Yes
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-check">
+          <div style='padding: 15px'>
+            <input class="form-check-input" type="radio" name="delivery" id="exampleRadios2" value="False">
+            <label class="form-check-label" for="exampleRadios2">
+             No
+            </label>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class ="row">
+    <div class="col-md-4">
+      <div style='padding: 12px'>
+        <h4 class="text-center" class ="display-3">Formal or casual or don't care</h4>
+      </div>
     </div>
+  </div>
 
-    <div class = "row">
-      <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="reservation" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Allows Reservations
-            </label>
-          </div>
+  <div class ="row">
+    <div class="col-md-2">
+      <div class="form-check">
+        <div style='padding: 15px'>
+          <input class="form-check-input" type="radio" name="attire" id="exampleRadios1" value="Formal" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Formal
+          </label>
         </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="businessparking" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Business Parking
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="tv" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Has TV
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="ethnic" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Ethnic Food
-            </label>
-          </div>
-        </div>
+      </div>
     </div>
-
-    <div class = "row">
-      <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="bike" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Bike Parking
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="wheelchair" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Wheelchair Accessible
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="garage" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Garage Parking
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="street" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Street Parking
-            </label>
-          </div>
-        </div>
+    <div class="col-md-2">
+      <div class="form-check">
+        <div style='padding: 15px'>
+          <input class="form-check-input" type="radio" name="attire" id="exampleRadios2" value="Casual">
+          <label class="form-check-label" for="exampleRadios2">
+            Casual
+          </label>
+      </div>
+     </div>
     </div>
-
-    <div class = "row">
-      <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="alcohol" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Alcohol
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="kids" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Good For Kids
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="groups" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Good for Groups
-            </label>
-          </div>
-        </div>
-        <div class = "col-md-2">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="outdoor" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-              Outdoor Seating
-            </label>
-          </div>
-        </div>
+    <div class="col-md-2">
+      <div class="form-check">
+        <div style='padding: 15px'>
+          <input class="form-check-input" type="radio" name="attire" id="exampleRadios2" value="Don't Care">
+          <label class="form-check-label" for="exampleRadios2">
+          Don't Care
+        </label>
+      </div>
     </div>
+  </div>
+</div>
+        
 
-
-    <div class = "row">
-        <div class="col-md-12">
-          <div class="text-center">
-            <div class="text-center"><button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-       </div>
+    
+  <div class ="row">
+    <div class="col-md-12">
+      <div style='padding: 15px'>
+        <div class="formBox">
+          <button id="btn" onclick = "style.display = 'none'">Click to Add</button>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
+
+  <div id="msg">
+    <pre></pre>
+  </div>
+
+    
+</form>
+
+  <script>
+    let data = [];
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    const addData = (ev)=>{
+        ev.preventDefault();  //to stop the form submitting
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        var city = document.getElementById('city').value;
+        var state = document.getElementById('state').value;
+        var region = document.getElementById('region').value;
+        var foodtype = document.getElementById('food').value;
+        var restauranttype = document.getElementById('restaurant').value;
+        var takeout = document.querySelector('input[name="takeout"]:checked').value;
+        var delivery = document.querySelector('input[name="delivery"]:checked').value;
+        var attire = document.querySelector('input[name="attire"]:checked').value;
 
-    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    -->
+        console.log(state);
+        console.log(city);
+
+
+        console.log("Clicked!");
+  
+        var client = new XMLHttpRequest();
+        var url = "http://api.zippopotam.us/us/" + state.toLowerCase() + "/" + city.toLowerCase();
+        console.log(url);
+        client.open("GET", url, false);
+        client.onreadystatechange = function() {
+	        if(client.readyState == 4) {
+            var long = ((client.responseText.split(": ")[4]).split(",")[0]).split("\"")[1];
+            var lat = (client.responseText.split(": ")[6].split(",")[0]).split("\"")[1];
+            localStorage.setItem('long', JSON.stringify(long) );
+            localStorage.setItem('lat', JSON.stringify(lat) );
+            console.log(long +" "+ lat);
+          }
+        };
+        client.send();
+        var longitude = window.localStorage.getItem('long');
+        var latitude = window.localStorage.getItem('lat');
+        latsubstr = parseFloat(latitude.substring(1,latitude.length-1));
+        longsubstr = parseFloat(longitude.substring(1,latitude.length-1));
+
+        var attribute = 
+        {
+          RestaurantsTakeOut: takeout,
+          RestaurantsDelivery: delivery,
+          RestaurantsAttire: attire
+        }
+
+        var categorie = region + ", " + foodtype + ", " + restauranttype;
+
+        var userInput = {
+            latitude: latsubstr,
+            longitude: longsubstr,
+            attributes: attribute,
+            categories: categorie
+        }
+
+
+        data.push(userInput);
+        document.forms[0].reset(); // to clear the form for the next entries
+        //document.querySelector('form').reset();
+
+        //for display purposes only
+        //console.warn('added' , {movies} );
+        //let pre = document.querySelector('#msg pre');
+        //pre.textContent = '\n' + JSON.stringify(movies, '\t', 2);
+
+        //saving to localStorage
+        localStorage.setItem('UserData', JSON.stringify(data) );
+        window.location.replace("restaurants.html");
+    }
+
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+        document.getElementById('btn').addEventListener('click', addData);
+    });
+
+</script>
+
+
+   <!-- jQuery, Popper.js, Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="..\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+
+   <!-- Font Awesome -->
+   <script src="https://kit.fontawesome.com/566a0b3594.js" crossorigin="anonymous"></script>
+   
+   <!-- D3.js -->
+   <script src="https://d3js.org/d3.v4.min.js"></script>
+
   </body>
