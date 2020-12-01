@@ -242,9 +242,10 @@
 	        if(client.readyState == 4) {
             var long = ((client.responseText.split(": ")[4]).split(",")[0]).split("\"")[1];
             var lat = (client.responseText.split(": ")[6].split(",")[0]).split("\"")[1];
-            localStorage.setItem('long', JSON.stringify(long) );
+            localStorage.setItem('long', JSON.stringify(long));
             localStorage.setItem('lat', JSON.stringify(lat) );
             console.log(long +" "+ lat);
+            
           }
         };
         client.send();
@@ -259,21 +260,33 @@
           RestaurantsDelivery: delivery,
           RestaurantsAttire: attire
         }
+        var regions = region.split(",");
+        var foodtypes = foodtype.split(",");
+        var rtypes = restauranttype.split(",");
 
-        var categorie = region + ", " + foodtype + ", " + restauranttype;
+        var categories =  [];
 
+        for (var i of regions){
+            if(i != "") categories.push(i)
+        }
+        for (var i of foodtypes){
+            if(i != "") categories.push(i)
+        }
+        for (var i of rtypes) {
+            if(i != "") categories.push(i)
+        }
         var userInput = {
             latitude: latsubstr,
             longitude: longsubstr,
             attributes: attribute,
-            categories: categorie
+            categories: categories
         }
 
 
         data.push(userInput);
         document.forms[0].reset(); // to clear the form for the next entries
         //document.querySelector('form').reset();
-
+        console.log(JSON.stringify(data))
         //for display purposes only
         //console.warn('added' , {movies} );
         //let pre = document.querySelector('#msg pre');
