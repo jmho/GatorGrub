@@ -35,7 +35,7 @@ SCALER = 20
 REVIEW_THRESHOLD = 30
 base_url = 'http://api.zippopotam.us/us/'
 
-def dist(b1,b2):
+def dist(b1,b2): #O(1)
     R = 6371.0
     latA = math.radians(b1["latitude"])
     lonA = math.radians(b1["longitude"])
@@ -49,15 +49,15 @@ def dist(b1,b2):
     a = math.sin(dlat / 2)**2 + math.cos(latA) * math.cos(latB) * math.sin(dlon / 2)**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return R*c
-def sigmoid(x):
+def sigmoid(x): #O(1)
     return 1/(1+np.exp(-x/SCALER))
-def scaleFactor(nor,star):
+def scaleFactor(nor,star): #O(1)
     stardef = star - STAR_THRESHOLD
     mult = 1
     if(stardef<0):
         mult = -1
     return mult*(2*sigmoid(nor-REVIEW_THRESHOLD)-1)
-def likeability(params,business):
+def likeability(params,business): #O(P*B + A) P is categories of params B is categories of business and A is attributes of Params
     #this function allows us to score how much a user might like a particular restaurant 
     #given a set of parameters or given a restaurant that we found that they would like
    
@@ -125,6 +125,7 @@ def likeability(params,business):
     paramsatb = params["attributes"]
     #if we have no requested attributes this score will be 1
     atbScore = 1
+    #this should only be O(P) because these are loaded as dictionaries so access time is O(1)
     for line in paramsatb:
         if line in busatb:
             if paramsatb[line] == busatb[line]:
@@ -140,7 +141,7 @@ def likeability(params,business):
     return .8*(.3*rating+.4*catScore+.3*atbScore)+.2*distScore
 
 
-def findRest(params,dat,n,family):
+def findRest(params,dat,n,family): #O(D*(P*B + A + N + log(n)) + n)
     #this function returns the n most likeable restauratns for a given set of parameters or restaurant
     heap = []
     scores = set()
@@ -153,44 +154,44 @@ def findRest(params,dat,n,family):
     #use this to make sure we avoid adding two restaurants of the same name unless one is better than the other
     #limits the likelyhood of duplicates
     nameMap = dict()
-    for business in dat:
-        if business["name"] not in family:
-            score = likeability(params,business)
-            if (score not in scores) and (business["name"] != parentName) and (business['name'] not in nameMap or nameMap[business["name"]] < score):
+    for business in dat: #O(D*(P*B + A + N + log(n)))
+        if business["name"] not in family: #O(1)
+            score = likeability(params,business) #O(P*B +A)
+            if (score not in scores) and (business["name"] != parentName) and (business['name'] not in nameMap or nameMap[business["name"]] < score): #O(N)
                 scores.add(score)
-                heappush(heap, (score,business))
+                heappush(heap, (score,business)) #O(log(n))
                 nameMap[business["name"]] = score
                 if len(heap) > n:
-                    heappop(heap)
+                    heappop(heap) #O(log(n))
     family.clear()
-    for h in heap:
+    for h in heap: #O(n)
         family.add(h[1]["name"])
     return heap
   
 def runAnalysis(param):
-    f = open(DAT_file, encoding='utf8')
-    dat = json.loads(f.readline())
+    f = open(DAT_file, encoding='utf8') #O(1)
+    dat = json.load(f) #O(D)
     f.close()
     adjMap = dict()
     nodes = dict()
     family = set()
-    initSet = findRest(param,dat,1,family)
+    initSet = findRest(param,dat,1,family) #O(D*(P*B + A + N))
     
     
     # builds an adjacency Map of restaurants that are the most similar and most likeable
-    for suggestion in initSet:
+    for suggestion in initSet: #O(1)
         p1 = suggestion[1]["business_id"]
         nodes[p1] = suggestion
         adjMap[p1] = []
-        set2 = findRest(suggestion[1],dat,4,family)
-        for suggestion2 in set2:
+        set2 = findRest(suggestion[1],dat,4,family) #O(D*(P*B + A + N))
+        for suggestion2 in set2: #O(4)
             p2 = suggestion2[1]["business_id"]
             nodes[p2] = suggestion2
             adjMap[p1].append(p2)
-            if p2 not in adjMap:
+            if p2 not in adjMap: #O(1)
                 adjMap[p2] = [] 
-            set3 = findRest(suggestion2[1],dat,4,family)
-            for suggestion3 in set3:
+            set3 = findRest(suggestion2[1],dat,4,family) #O(D*(P*B + A + N))
+            for suggestion3 in set3: #O(4)
                 p3 = suggestion3[1]["business_id"]
                 nodes[p3] = suggestion3
                 adjMap[p2].append(p3)
@@ -207,7 +208,7 @@ def drawGraph(raw_graph_data):
     names = set()
     nameMap = dict()
     wrappedNameMap = dict()
-    for v in vertices:
+    for v in vertices: #Wost Case (O(21))
         name = vertices[v][1]["name"]
         if name in names: #add to set and add as normal
             i = 2
@@ -248,7 +249,7 @@ def drawGraph(raw_graph_data):
             to_name = nameMap[t]
             graph_data[from_name].append(to_name)
     G = nx.DiGraph(graph_data)
-    pos = nx.spring_layout(G,k=8/math.sqrt(G.order()))
+    pos = nx.spring_layout(G,k=6.5/math.sqrt(G.order()))
     nx.draw(G,pos,node_size=[len(v) * 250 for v in G.nodes()],with_labels = True, font_size = 8)    
     return [pos,wrappedNameMap,graph_data]
 
@@ -527,9 +528,7 @@ class Ui_MainWindow(object):
             if dist < .25 and dist < closest:
                 closest = dist
                 closestName = node
-                
-                
-                
+                               
         if closest !=2:
             info = self.nM[closestName][1]
             text = info["name"]
@@ -627,7 +626,6 @@ class Ui_MainWindow(object):
             if(self.takeoutdelivery != 2):
                 options = ["RestaurantsTakeOut","RestaurantsDelivery"]
                 params["attributes"][options[self.takeoutdelivery]] = True
-            #print(params)
             
             g = runAnalysis(params)
             ret = drawGraph(g)
